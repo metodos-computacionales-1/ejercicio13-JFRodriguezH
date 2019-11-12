@@ -1,11 +1,16 @@
 #include <iostream>
 
 int fill(int **m, int N);
+int producto(int **m, int **n, int **mult, int N);
 
 int main(){
     std::cout.precision(16);
     std::cout.setf(std::ios::scientific);
-    int N = 5;
+    int N;
+    
+    std::cout<<"Escriba el valor de N: "<<std::endl;
+    std::cin>> N;
+    std::cout<<std::endl;
     
     int **m;
     m = new int *[N];
@@ -31,22 +36,7 @@ int main(){
     fill(m, N);
     fill(n, N);
     
-    for(int i=0; i < N; i++){
-        for(int j=0; j < N; j++){
-            std::cout<< n[i][j] << " ";
-        }
-        std::cout<<std::endl;
-    }
-    /*
-    for(int i=0;i<N;i++){
-        for(int j=0;j<N;j++){
-            int suma=0;
-            for(int k=0;k<N;k++){
-                suma += m[i][k] * n[k][j];
-            }
-            mult[i][j]=suma;
-        }
-    }
+    producto(m, n, mult, N);
     
     for(int i=0; i<N; i++){
         for(int j=0; j<N; j++){
@@ -54,7 +44,6 @@ int main(){
         }
         std::cout<<std::endl;
     }
-    */
     return 0;
 }
 
@@ -75,6 +64,19 @@ int fill(int **m, int N){
                     m[i][j] = 1;
                 }
             }
+        }
+    }
+    return 0;
+}
+
+int producto(int **m, int **n, int **mult, int N){
+    for(int i=0;i<N;i++){
+        for(int j=0;j<N;j++){
+            int suma=0;
+            for(int k=0;k<N;k++){
+                suma += m[i][k] * n[k][j];
+            }
+            mult[i][j]=suma;
         }
     }
     return 0;
